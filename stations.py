@@ -24,7 +24,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 
 
-all_stations = pd.read_csv("all_stations.csv")
+all_stations = pd.read_csv("all_stations.csv")[['sign','freq','city','format','state']]
 
 
 # In[264]:
