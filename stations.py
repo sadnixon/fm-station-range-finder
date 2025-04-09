@@ -61,6 +61,9 @@ for row in range(len(all_stations_grouped)):
     response = requests.get("https://transition.fcc.gov/fcc-bin/fmq?call="+call_sign+"&freq="+str(freq)+"&fre2="+str(freq)+"#tabs-10000-2",headers=headers)
     page_text = response.text
 
+    print(response)
+    print(page_text)
+
     appid = re.findall("c_application_id = '(\d*)';",page_text)
     lmsid = re.findall("lms_appid = '([a-z0-9]*)';",page_text)
     call = re.findall("c_callsign = '([^']*)';",page_text)
@@ -76,6 +79,10 @@ for row in range(len(all_stations_grouped)):
     for i in range(len(appid)):
         comp_url = 'https://transition.fcc.gov/fcc-bin/contourplot.kml?appid='+appid[i]+'&lmsid='+lmsid[i]+'&call='+call[i]+'&freq='+str(round(freq,1))+'&contour=60&city='+city[i]+'&state='+state[i]+'&fileno='+fileno[i]+'&.txt'
         response = requests.get(comp_url,headers=headers)
+
+        print(response)
+        print(page_text)
+
         try:
             kml_string = response.text
             kml_file = StringIO(kml_string)
